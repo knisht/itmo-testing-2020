@@ -1,20 +1,25 @@
 <template>
   <div id="app">
-    <TopMenu class="top-menu"/>
-    <img alt="BlackBox logo" src="../../assets/blackbox.png">
-    <HelloWorld msg="Welcome to the BlackBox App, About page!"/>
+    <TopMenu class="top-menu" :links="linkData"/>
+      <img alt="BlackBox logo" src="../../assets/blackbox.png">
+      <Greeting msg="Welcome to the BlackBox App, About page!"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from '../../components/Greeting.vue'
+import Greeting from '../../components/Greeting.vue'
 import TopMenu from "@/components/TopMenu";
 
 export default {
   name: 'App',
   components: {
     TopMenu,
-    HelloWorld
+    Greeting
+  },
+  data: function () {
+    return {
+      linkData: [ {text: "Home", link: "index.html"}, {text: "Login", link: "login"}]
+    };
   }
 }
 </script>
