@@ -18,7 +18,7 @@ export default {
   },
   data: function() {
     return {
-      linkData: [ {text: "About", link: "about"}, {text: "Login", link: "login"}]
+      linkData: [ {text: "About", link: "about"}, {text: "Guess", link: "guess"}, {text: "Login", link: "login"}]
     }
   }
 }

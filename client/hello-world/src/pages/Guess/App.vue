@@ -1,29 +1,31 @@
 <template>
   <div id="app">
     <TopMenu class="top-menu" :links="linkData"/>
-    <AboutDescription/>
+    <GuessingGame :sequence="sequence" :result="answer"/>
   </div>
 </template>
 
 <script>
 import TopMenu from "@/components/TopMenu";
-import AboutDescription from "@/pages/About/AboutDescription";
+import GuessingGame from "@/pages/Guess/GuessingGame";
 
 export default {
   name: 'App',
   components: {
-    AboutDescription,
-    TopMenu,
+    GuessingGame,
+    TopMenu
   },
   data: function () {
     return {
-      linkData: [ {text: "Home", link: "index.html"}, {text: "Login", link: "login"}]
-    };
+      linkData: [{text: "Home", link: "index.html"}, {text: "Login", link: "login"}],
+      sequence: [1, 2, 3, 4, 5],
+      answer: 6
+    }
   }
 }
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

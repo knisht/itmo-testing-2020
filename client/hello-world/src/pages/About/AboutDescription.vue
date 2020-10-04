@@ -4,8 +4,8 @@
   Nice to meet you at the description page!
   </p>
   <br>
-  Probably, you came here to learn something about this website. Sorry to disappoint you, but:
-  <h1> You came there for nothing</h1>
+  Probably, you are here to learn something about this website. Sorry to disappoint you, but:
+  <h1> You came here for nothing</h1>
   <p>
     It is literally no a single bit of information I will share with you to put some light on the purpose of this web application.
   </p>

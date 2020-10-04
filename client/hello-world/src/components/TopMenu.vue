@@ -1,7 +1,7 @@
 <template>
   <div class="top-menu">
     <div class="topnav" id="top-list">
-      <a v-bind:key="link" v-for="link in links" :href=link.link> {{ link.text }}</a>
+      <a v-bind:key="link" v-for="link in links" :href=link.link :style="width"> {{ link.text }}</a>
     </div>
   </div>
 </template>
@@ -9,6 +9,14 @@
 <script>
 export default {
   name: "TopMenu",
+  computed: {
+    width () {
+      // console.log(this.links)
+      // console.log(100 / this.links.length)
+      // console.log("width: " + ((100.0 / this.links.length) - 1).toString() + "%")
+      return "width: " + ((100.0 / this.links.length) - 2 ).toString() + "%"
+    }
+  },
   props: {
     links: {
       type: Array,
@@ -39,7 +47,7 @@ export default {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 120%;
-  width: 48%;
+  /*width: 48%;*/
 }
 
 .topnav a:hover {
