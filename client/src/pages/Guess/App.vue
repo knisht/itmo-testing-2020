@@ -1,13 +1,14 @@
 <template>
   <div id="app">
     <TopMenu class="top-menu" :links="linkData"/>
-    <GuessingGame :sequence="sequence" :result="answer"/>
+    <GuessingGame :game="gameInstance"/>
   </div>
 </template>
 
 <script>
 import TopMenu from "@/components/TopMenu";
 import GuessingGame from "@/pages/Guess/GuessingGame";
+import gameService from "@/services/gameService";
 
 export default {
   name: 'App',
@@ -18,9 +19,13 @@ export default {
   data: function () {
     return {
       linkData: [{text: "Home", link: "index.html"}, {text: "Login", link: "login"}],
-      sequence: [1, 2, 3, 4, 5],
-      answer: 6
+      gameInstance: {}
     }
+  },
+  mounted() {
+    gameService.getGame().then(gameInstance => {
+      this.$set(this, "gameInstance", gameInstance)
+    });
   }
 }
 </script>

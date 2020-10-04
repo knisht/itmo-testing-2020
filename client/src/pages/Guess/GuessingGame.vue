@@ -2,7 +2,7 @@
   <div class="game">
     <h1>Here are some numbers:</h1>
     <ul>
-      <li v-bind:key="num" v-for="num in sequence">{{ num }}</li>
+      <li v-bind:key="num" v-for="num in game.sequence">{{ num }}</li>
     </ul>
     <h1>So what goes next?</h1>
     <label>
@@ -10,6 +10,10 @@
     </label>
     <p v-if="isGuessedCorrectly">
       Ok!
+      <br>
+      This is a "{{ game.name }}"
+      <br>
+      Read more at <a :href="game.link">OEIS</a>
     </p>
     <p v-else-if="isNontrivialInput">
       No, you're wrong.
@@ -22,20 +26,14 @@ export default {
   name: "GuessingGame",
   computed: {
     isGuessedCorrectly() {
-      return this.result === this.userInput
+      return this.game.result === this.userInput
     },
     isNontrivialInput() {
-      console.log(this.userInput.length)
       return this.userInput.length !== 0
     }
   },
   props: {
-    sequence: {
-      type: Array,
-      required: true
-    },
-    result: {
-      type: Number,
+    game: {
       required: true
     }
   },
