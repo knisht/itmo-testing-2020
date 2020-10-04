@@ -1,7 +1,10 @@
 <template>
   <div class="game">
     <h1>Here are some numbers:</h1>
-    <ul>
+    <p v-if="!areNumbersLoaded">
+      Loading...
+    </p>
+    <ul v-else>
       <li v-bind:key="num" v-for="num in game.sequence">{{ num }}</li>
     </ul>
     <h1>So what goes next?</h1>
@@ -30,6 +33,9 @@ export default {
     },
     isNontrivialInput() {
       return this.userInput.length !== 0
+    },
+    areNumbersLoaded() {
+      return "sequence" in this.game
     }
   },
   props: {
