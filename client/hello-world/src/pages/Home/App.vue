@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Greeting from '../../components/Greeting.vue'
+import Greeting from './Greeting.vue'
 import TopMenu from "@/components/TopMenu";
 
 export default {
