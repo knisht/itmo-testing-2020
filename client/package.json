@@ -1,12 +1,14 @@
 {
-  "name": "hello-world",
+  "name": "blackbox",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test": "jest"
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "jest",
+    "test:e2e": "npx cypress run"
   },
   "dependencies": {
     "axios": "^0.20.0",
@@ -63,6 +65,7 @@
       "json",
       "vue"
     ],
+    "modulePathIgnorePatterns": ["e2e"],
     "modulePaths": [
       "<rootDir>/src",
       "<rootDir>/node_modules"
@@ -76,5 +79,5 @@
     }
   },
   "_id": "hello-world@0.1.0",
-  "readme": "ERROR: No README data found!"
+  "readme": "README.md"
 }

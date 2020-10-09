@@ -1,24 +1,34 @@
-# hello-world
+# BlackBox 
 
-## Project setup
+## Backend setup
+Backend server will listen `localhost:3030` via NodeJS.
+
+Setup dependencies:
 ```
-yarn install
+cd server 
+npm install 
 ```
 
-### Compiles and hot-reloads for development
+Run:
+```
+node app.js 
+```
+
+## Frontend setup
+Frontend uses VueJS.
+
+Setup dependencies:
+```
+npm install
+```
+
+Start application:
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+Test application:
 ```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
+yarn test
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
