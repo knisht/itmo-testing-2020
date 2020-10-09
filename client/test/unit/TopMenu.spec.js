@@ -8,7 +8,7 @@ describe('Top Menu tests', () => {
             propsData: {
                 links: []
             }
-        })
+        });
 
         expect(wrapper.findAll('.topnav a')).toHaveLength(0)
     });
@@ -18,7 +18,7 @@ describe('Top Menu tests', () => {
             propsData: {
                 links: [{ link: "", text: "abc"}, { link: "", text: "def"}]
             }
-        })
+        });
 
         expect(wrapper.findAll('.topnav a')).toHaveLength(2)
         expect(wrapper.findAll('.topnav a').at(0).text()).toBe("abc")
