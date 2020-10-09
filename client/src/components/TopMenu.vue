@@ -1,7 +1,7 @@
 <template>
   <div class="top-menu">
     <div class="topnav" id="top-list">
-      <a v-bind:key="link" v-for="link in links" :href=link.link :style="width"> {{ link.text }}</a>
+      <a v-bind:key="idx" v-for="(link, idx) in links" :href=link.link :style="width"> {{ link.text }}</a>
     </div>
   </div>
 </template>
@@ -11,9 +11,6 @@ export default {
   name: "TopMenu",
   computed: {
     width () {
-      // console.log(this.links)
-      // console.log(100 / this.links.length)
-      // console.log("width: " + ((100.0 / this.links.length) - 1).toString() + "%")
       return "width: " + ((100.0 / this.links.length) - 2 ).toString() + "%"
     }
   },
