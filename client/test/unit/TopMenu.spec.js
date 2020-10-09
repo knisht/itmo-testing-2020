@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import TopMenu from "../TopMenu.vue";
+import TopMenu from "@/components/TopMenu.vue";
 
 
 describe('Top Menu tests', () => {
