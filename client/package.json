@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
-    "vue": "^2.4.4"
+    "vue": "^2.5.22"
   },
   "devDependencies": {
     "@testing-library/vue": "^5.1.0",
