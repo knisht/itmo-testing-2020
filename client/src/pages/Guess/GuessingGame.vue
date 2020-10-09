@@ -9,7 +9,7 @@
     </ul>
     <h1>So what goes next?</h1>
     <label>
-      <input v-model.number="userInput" type="number" placeholder="Type the number"/>
+      <input v-model.number="userInput" type="number" placeholder="Type the number" id="input_form" />
     </label>
     <p v-if="isGuessedCorrectly" id="correct_answer">
       Ok!
