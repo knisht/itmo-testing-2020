@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 module.exports = {
     pages: {
         'index': {
@@ -17,6 +18,12 @@ module.exports = {
             template: 'pubic/index.html',
             title: 'Guess',
             chunks: ['chunk-vendors', 'chunk-common', 'guess']
+        },
+        'login': {
+            entry: './src/pages/Login/main.js',
+            template: 'public/index.html',
+            title: 'Login',
+            chunks: ['chunk-vendors', 'chunk-common', 'login']
         }
     }
 }

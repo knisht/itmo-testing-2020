@@ -33,6 +33,7 @@
     "jest": "^25.5.4",
     "jest-environment-jsdom-fifteen": "^1.0.2",
     "vue-jest": "^2.6.0",
+    "vue-router": "^2.5.3",
     "vue-template-compiler": "^2.6.11",
     "webpack": "^2.6.1",
     "webpack-bundle-analyzer": "^2.2.1",
@@ -65,7 +66,9 @@
       "json",
       "vue"
     ],
-    "modulePathIgnorePatterns": ["e2e"],
+    "modulePathIgnorePatterns": [
+      "e2e"
+    ],
     "modulePaths": [
       "<rootDir>/src",
       "<rootDir>/node_modules"
