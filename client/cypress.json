@@ -1,5 +1,5 @@
 {
-  "integrationFolder": "test/e2e",
+  "integrationFolder": "test/e2e/cypress",
   "fixturesFolder": false,
   "supportFile": false,
   "pluginsFile": false
