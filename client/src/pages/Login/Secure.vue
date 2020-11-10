@@ -1,15 +1,20 @@
 <template>
   <div id="secure">
-    <h1>Secure Area</h1>
+    <h1>You have successfully logged in.</h1>
     <p>
-      This is a secure area
+      But what for? It will not give you anything.
     </p>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Secure"
+  name: "Secure",
+  mounted() {
+    if (!this.$parent.isAuthenticated) {
+      this.$router.replace({ name: "login" })
+    }
+  }
 }
 </script>
 

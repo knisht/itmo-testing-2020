@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const gameService = require("../models/guessingGame")
+const gameService = require("../services/guessingGame")
 
 
 router.get("/game", gameService)

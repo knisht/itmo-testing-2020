@@ -1,37 +1,45 @@
 <template>
   <div id="app">
+    <a href="/">go back</a>
     <div id="nav">
-      <router-link v-if="authenticated" to="/" v-on:click.native="logout()" replace>Logout</router-link>
+      <router-link v-if="isAuthenticated" ref="logout" to="/" v-on:click.native="logout()" replace>Logout</router-link>
     </div>
-    <router-view @authenticated="setAuthenticated" />
+    <router-view/>
   </div>
 </template>
 
 <script>
+import loginService from "@/services/login"
+
 export default {
 
   name: 'App',
   data() {
     return {
-      authenticated: false,
-      mockAccount: {
-        username: "admin",
-        password: "admin"
-      }
+      isAuthenticated: false,
+    }
+  },
+  computed: {
+    getAuthenticationStatus() {
+      return loginService.checkAuthentication()
     }
   },
   mounted() {
-    if(!this.authenticated) {
-      this.$router.replace({ name: "login" });
-    }
+    this.getAuthenticationStatus.then(isAuthenticated => {
+      if (!isAuthenticated) {
+        this.$router.replace({name: "login"});
+      } else {
+        this.$set(this, "isAuthenticated", true)
+        this.$router.replace({name: "secure"})
+      }
+    })
+
   },
   methods: {
-    setAuthenticated(status) {
-      this.authenticated = status;
-    },
     logout() {
-      this.authenticated = false;
-      this.$router.replace({ name: "login" });
+      loginService.logout()
+      this.$set(this, "isAuthenticated", false);
+      this.$router.replace({name: "login"});
     }
   }
 }
