@@ -8,7 +8,7 @@ export default {
         return axios.post("/login", null, {
             params: {username: username, password: password},
             withCredentials: true
-        }).then(res => res.data)
+        }).then(res => res.data, () => false)
     },
     checkAuthentication() {
         return axios.get("/logged", {withCredentials: true}).then(res => res.data)

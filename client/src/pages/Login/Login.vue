@@ -10,7 +10,7 @@
           <input id="password-input" type="password" name="password" v-model="input.password" placeholder="Password"/>
         </label>
         <button id="login-button" type="button" v-on:click="login">Login</button>
-        <div v-if="shouldShowAuthorizationError">Incorrect login or password</div>
+        <div id="failure-message" v-if="shouldShowAuthorizationError">Incorrect login or password</div>
       </form>
     </div>
   </div>
