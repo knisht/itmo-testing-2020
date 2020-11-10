@@ -4,12 +4,13 @@
     <div>
       <form id="sign-in">
         <label>
-          <input type="text" name="username" v-model="input.username" placeholder="Username"/>
+          <input id="username-input" type="text" name="username" v-model="input.username" placeholder="Username"/>
         </label>
         <label>
-          <input type="password" name="password" v-model="input.password" placeholder="Password"/>
+          <input id="password-input" type="password" name="password" v-model="input.password" placeholder="Password"/>
         </label>
-        <button type="button" v-on:click="login">Login</button>
+        <button id="login-button" type="button" v-on:click="login">Login</button>
+        <div v-if="shouldShowAuthorizationError">Incorrect login or password</div>
       </form>
     </div>
   </div>
@@ -25,7 +26,8 @@ export default {
       input: {
         username: "",
         password: ""
-      }
+      },
+      shouldShowAuthorizationError: false
     }
   },
   computed: {
@@ -40,6 +42,8 @@ export default {
         if (isAuthenticated) {
           this.$router.replace({name: "secure"})
           this.$parent.$data.isAuthenticated = true
+        } else {
+          this.$set(this, "shouldShowAuthorizationError", true)
         }
       })
     }

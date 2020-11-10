@@ -1,6 +1,7 @@
 import axios from "axios"
 
-axios.defaults.baseURL = location.protocol + "//" + location.hostname + ":" + 3000;
+axios.defaults.baseURL = typeof location === 'undefined' ? "localhost:3000" : location.protocol + "//" + location.hostname + ":" + 3000;
+axios.defaults.adapter = require('axios/lib/adapters/http');
 
 export default {
     tryLogin(username, password) {

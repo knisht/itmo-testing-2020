@@ -32,6 +32,8 @@
     "eslint-plugin-vue": "^6.2.2",
     "jest": "^25.5.4",
     "jest-environment-jsdom-fifteen": "^1.0.2",
+    "mock-http-server": "^1.4.2",
+    "msw": "^0.21.3",
     "vue-jest": "^2.6.0",
     "vue-router": "^2.5.3",
     "vue-template-compiler": "^2.6.11",
