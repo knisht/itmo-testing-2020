@@ -1,11 +1,12 @@
 # BlackBox 
 
 ## Backend setup
-Backend server will listen `localhost:3000` via NodeJS.
+Backend server will listen `localhost:3000`
 
+### Legacy NodeJS backend
 Setup dependencies:
 ```
-cd server 
+cd server-js 
 npm install 
 ```
 
