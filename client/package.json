@@ -2,18 +2,20 @@
   "name": "blackbox",
   "version": "0.1.0",
   "private": true,
+  "description": "README.md",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "jest",
     "test:e2e": "yarn test:e2e:cypress && yarn test:e2e:playwright",
+    "lint": "vue-cli-service lint",
     "test:e2e:cypress": "npx cypress run",
-    "test:e2e:playwright": "vue-cli-service test:e2e 'test/e2e/playwright/**/*.spec.js'",
-    "lint": "vue-cli-service lint"
+    "test:e2e:playwright": "vue-cli-service test:e2e 'test/e2e/playwright/**/*.spec.js'"
   },
   "dependencies": {
     "axios": "^0.20.0",
-    "vue": "^2.5.22"
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11"
   },
   "devDependencies": {
     "@testing-library/vue": "^5.1.0",
@@ -23,7 +25,7 @@
     "@vue/cli-service": "~4.5.0",
     "@vue/test-utils": "^1.0.4",
     "babel-core": "^7.0.0-beta.3",
-    "babel-eslint": "^7.1.1",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^20.0.3",
     "babel-loader": "^7.1.1",
     "babel-preset-env": "^1.7.0",
@@ -100,6 +102,6 @@
       "^@/(.*)$": "<rootDir>/src/$1"
     }
   },
-  "_id": "hello-world@0.1.0",
+  "_id": "blackbox@0.1.0",
   "readme": "README.md"
 }
