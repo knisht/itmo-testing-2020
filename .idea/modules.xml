@@ -4,7 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/client/client.iml" filepath="$PROJECT_DIR$/client/client.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/itmo-testing-2020.iml" filepath="$PROJECT_DIR$/.idea/itmo-testing-2020.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server-jvm/src/main/main.iml" filepath="$PROJECT_DIR$/server-jvm/src/main/main.iml" />
       <module fileurl="file://$PROJECT_DIR$/server-js/server-js.iml" filepath="$PROJECT_DIR$/server-js/server-js.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server-jvm/src/test/test.iml" filepath="$PROJECT_DIR$/server-jvm/src/test/test.iml" />
     </modules>
   </component>
 </project>

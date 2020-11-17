@@ -25,5 +25,11 @@
     "pug": "2.0.0-beta11",
     "request": "^2.88.2",
     "sync-request": "^6.1.0"
-  }
+  },
+  "main": "app.js",
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
