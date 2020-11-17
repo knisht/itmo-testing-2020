@@ -30,8 +30,6 @@ class LoginController {
     @GetMapping("/logged")
     @PreAuthorize('isFullyAuthenticated()')
     String logged(@AuthenticationPrincipal UserDetail bean) {
-        println 'check logging'
-        println bean
         (bean != null).toString()
     }
 
@@ -40,7 +38,6 @@ class LoginController {
 
     @PostMapping("/login")
     ResponseEntity<String> login(String username, String password) {
-        println "Here"
         if (username == 'admin' && password == 'admin') {
             def sessionToken = tokenService.createToken()
 

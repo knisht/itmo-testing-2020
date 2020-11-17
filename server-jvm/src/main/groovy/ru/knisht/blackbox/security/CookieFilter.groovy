@@ -28,7 +28,6 @@ class CookieFilter extends GenericFilterBean {
     @Override
     void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                   FilterChain filterChain) throws IOException, ServletException {
-        println "Filtering"
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest
 
         String sessionId = extractAuthenticationCookie(httpServletRequest)
@@ -46,8 +45,6 @@ class CookieFilter extends GenericFilterBean {
 
     static String extractAuthenticationCookie(HttpServletRequest httpServletRequest) {
         Cookie[] cookies = httpServletRequest.getCookies()
-        println cookies.collect {it.name + ' ' + it.value }
-        println LoginController.localDatabase
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName() == COOKIE_NAME) {

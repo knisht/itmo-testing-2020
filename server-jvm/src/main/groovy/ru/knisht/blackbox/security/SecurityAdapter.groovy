@@ -40,7 +40,7 @@ class SecurityAdapter extends WebSecurityConfigurerAdapter {
     private static class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
 
         @Override
-        public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response,
+        void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response,
                                     Authentication authentication) throws IOException {
 
             String sessionId = CookieFilter.extractAuthenticationCookie(request)
@@ -52,7 +52,6 @@ class SecurityAdapter extends WebSecurityConfigurerAdapter {
         }
     }
 
-//    @Autowired
     CustomLogoutSuccessHandler handler = new CustomLogoutSuccessHandler()
 
     @Bean
@@ -73,18 +72,6 @@ class SecurityAdapter extends WebSecurityConfigurerAdapter {
                     it.logoutSuccessHandler(handler)
                     it.deleteCookies(CookieFilter.COOKIE_NAME)
                 }
-//                .addFilterBefore(corsFilter(), CorsFilter)
                 .addFilterAfter(filter, SecurityContextPersistenceFilter.class)
     }
-//
-//    @Bean
-//    WebMvcConfigurer corsConfigurer() {
-//        return new WebMvcConfigurer() {
-//            @Override
-//            void addCorsMappings(CorsRegistry registry) {
-//                registry.addMapping("/**")
-//                        .allowedOrigins("http://localhost:8080").allowedMethods(HttpMethod.DELETE.toString())
-//            }
-//        };
-//    }
 }
