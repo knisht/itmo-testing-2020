@@ -1,16 +1,22 @@
-package ru.knisht.blackbox.controllers
+package ru.knisht.blackbox.controllers.game
 
 import groovy.json.JsonOutput
-import groovy.json.JsonSlurper
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
-import java.nio.charset.StandardCharsets
-
 @RestController
 @Newify(pattern = /[A-Z].*/)
 class GameController {
+
+    private UrlClient client
+
+    private RandomGenerator generator
+
+    GameController(UrlClient client, RandomGenerator generator) {
+        this.client = client
+        this.generator = generator
+    }
 
     private static buildQuery(number) {
         "https://oeis.org/search?q=id:A${number}&fmt=json"
@@ -20,16 +26,13 @@ class GameController {
         "https://oeis.org/search?q=id:A${number}"
     }
 
-    private static getRequestResult(url) {
-        JsonSlurper().parseText new URL(url).getText(StandardCharsets.UTF_8.displayName())
-    }
 
     @CrossOrigin("*")
     @RequestMapping("/api/game")
     String getGame() {
-        def sequenceId = new Random().nextInt().abs() % 1000
+        def sequenceId = generator.generateRandomNumber()
         def requestString = buildQuery sequenceId
-        def response = getRequestResult(requestString).results
+        def response = client.getRequestResult(requestString).results
         def array = (response.data[0] as String).split ','
         def startIndex = 0
         def endIndex = Math.min 10, array.size() - 2
