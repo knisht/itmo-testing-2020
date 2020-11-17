@@ -29,7 +29,8 @@ export default {
   name: "GuessingGame",
   computed: {
     isGuessedCorrectly() {
-      return this.game.result === this.userInput
+      // noinspection EqualityComparisonWithCoercionJS
+      return this.game.result == this.userInput
     },
     isNontrivialInput() {
       return this.userInput.length !== 0
