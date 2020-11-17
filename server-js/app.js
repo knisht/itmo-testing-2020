@@ -53,7 +53,7 @@ app.post('/login',
         res.send(true);
     });
 
-app.get('/logout',
+app.post('/logout',
     function (req, res) {
         req.logout();
         req.session.destroy()

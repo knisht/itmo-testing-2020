@@ -27,12 +27,12 @@ class GameController {
     @CrossOrigin("*")
     @RequestMapping("/api/game")
     String getGame() {
-        def sequenceId = Math.abs(new Random().nextInt()) % 1000
+        def sequenceId = new Random().nextInt().abs() % 1000
         def requestString = buildQuery sequenceId
         def response = getRequestResult(requestString).results
         def array = (response.data[0] as String).split ','
         def startIndex = 0
-        def endIndex = Math.min(10, array.size() - 2)
+        def endIndex = Math.min 10, array.size() - 2
         println array[endIndex + 1]
         return JsonOutput.toJson(
                 sequence: array[startIndex..endIndex],

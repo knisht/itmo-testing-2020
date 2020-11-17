@@ -11,9 +11,11 @@ export default {
         }).then(res => res.data, () => false)
     },
     checkAuthentication() {
-        return axios.get("/logged", {withCredentials: true}).then(res => res.data)
+        return axios.get("/logged", {
+            withCredentials: true,
+        }).then(res => res.data)
     },
     logout() {
-        return axios.get("/logout", {withCredentials: true}).then(res => res.data)
+        return axios.post("/logout", null, {withCredentials: true}).then(res => res.data)
     }
 }
