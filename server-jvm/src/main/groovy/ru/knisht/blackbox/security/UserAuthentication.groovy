@@ -5,12 +5,10 @@ import org.springframework.security.core.GrantedAuthority
 
 class UserAuthentication implements Authentication {
 
-    private static final long serialVersionUID = 1L
+    private final Long userId
 
-    private final UserDetail detail
-
-    UserAuthentication(UserDetail detail) {
-        this.detail = detail
+    UserAuthentication(Long userId) {
+        this.userId = userId
     }
 
     @Override
@@ -22,7 +20,7 @@ class UserAuthentication implements Authentication {
 
     Object details = null
 
-    UserDetail principal = detail
+    Long principal = userId
 
     boolean authenticated = true
 
@@ -31,5 +29,5 @@ class UserAuthentication implements Authentication {
         throw new UnsupportedOperationException('always authenticated')
     }
 
-    String name = detail.username
+    String name = null
 }

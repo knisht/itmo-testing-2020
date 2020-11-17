@@ -1,5 +1,4 @@
-package ru.knisht.blackbox.mvc
-
+package ru.knisht.blackbox.controllers
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpHeaders
@@ -12,25 +11,30 @@ import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RestController
+import ru.knisht.blackbox.dao.SessionRepository
+import ru.knisht.blackbox.dao.UserRepository
+import ru.knisht.blackbox.model.Session
 import ru.knisht.blackbox.security.CookieFilter
 import ru.knisht.blackbox.security.TokenService
-import ru.knisht.blackbox.security.UserDetail
-
-import java.util.concurrent.ConcurrentHashMap
 
 @RestController
 @CrossOrigin(allowCredentials = "true", origins = ['http://localhost:8080'])
+@Newify(pattern = /[A-Z].*]/)
 class LoginController {
 
     @Autowired
     private TokenService tokenService
 
-    static ConcurrentHashMap<String, UserDetail> localDatabase = new ConcurrentHashMap<>()
+    @Autowired
+    private UserRepository userRepository
+
+    @Autowired
+    private SessionRepository sessionRepository
 
     @GetMapping("/logged")
     @PreAuthorize('isFullyAuthenticated()')
-    String logged(@AuthenticationPrincipal UserDetail bean) {
-        (bean != null).toString()
+    String logged(@AuthenticationPrincipal Long id) {
+        (id != null).toString()
     }
 
     @PostMapping("/logout")
@@ -38,7 +42,8 @@ class LoginController {
 
     @PostMapping("/login")
     ResponseEntity<String> login(String username, String password) {
-        if (username == 'admin' && password == 'admin') {
+        def user = userRepository.findByNameAndPassword(username, password)
+        if (user != null) {
             def sessionToken = tokenService.createToken()
 
             def cookie = ResponseCookie
@@ -46,8 +51,8 @@ class LoginController {
                     .maxAge(3600)
                     .sameSite('Strict')
                     .httpOnly(true).secure(false).build()
-            def detail = new UserDetail(username, password, Collections.emptySet())
-            localDatabase.put(sessionToken, detail)
+
+            sessionRepository.save(new Session(id: sessionToken, userId: user.userId))
             return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).body('true')
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build()

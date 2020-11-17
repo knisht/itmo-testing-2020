@@ -1,4 +1,4 @@
-package ru.knisht.blackbox.mvc
+package ru.knisht.blackbox.controllers
 
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurper

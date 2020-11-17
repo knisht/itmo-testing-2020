@@ -1,10 +1,11 @@
 package ru.knisht.blackbox.security
 
-
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
 import org.springframework.web.filter.GenericFilterBean
-import ru.knisht.blackbox.mvc.LoginController
+import ru.knisht.blackbox.dao.SessionRepository
+import ru.knisht.blackbox.model.Session
 
 import javax.servlet.FilterChain
 import javax.servlet.ServletException
@@ -12,18 +13,14 @@ import javax.servlet.ServletRequest
 import javax.servlet.ServletResponse
 import javax.servlet.http.Cookie
 import javax.servlet.http.HttpServletRequest
-import java.util.concurrent.ConcurrentHashMap
 
 @Service
 class CookieFilter extends GenericFilterBean {
 
     public final static String COOKIE_NAME = "authentication"
 
-    private final ConcurrentHashMap<String, UserDetail> userDetailsCache
-
-    CookieFilter() {
-        this.userDetailsCache = new ConcurrentHashMap<>()
-    }
+    @Autowired
+    private SessionRepository sessionRepository
 
     @Override
     void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
@@ -33,10 +30,10 @@ class CookieFilter extends GenericFilterBean {
         String sessionId = extractAuthenticationCookie(httpServletRequest)
 
         if (sessionId != null) {
-            UserDetail userDetails = LoginController.localDatabase.get(sessionId)
+            Optional<Session> session = sessionRepository.findById(sessionId)
 
-            if (userDetails != null) {
-                SecurityContextHolder.getContext().setAuthentication(new UserAuthentication(userDetails))
+            if (session.isPresent()) {
+                SecurityContextHolder.getContext().setAuthentication(new UserAuthentication(session.get().userId))
             }
         }
 
