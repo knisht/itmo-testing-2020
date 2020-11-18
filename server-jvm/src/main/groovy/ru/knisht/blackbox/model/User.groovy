@@ -1,5 +1,8 @@
 package ru.knisht.blackbox.model
 
+import groovy.transform.ToString
+import groovy.transform.TupleConstructor
+
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -9,6 +12,8 @@ import javax.persistence.Table
 
 @Entity
 @Table(name='users')
+@ToString
+@TupleConstructor
 class User {
 
     @Id
