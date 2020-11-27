@@ -1,0 +1,30 @@
+
+name: Frontend-CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  unit-test:
+    name: Unit Tests
+    env:
+      working-directory: ./client
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        
+      - uses: actions/setup-node@v1
+        
+      - name: Install dependencies
+        working-directory: ${{ env.working-directory }}
+        run: yarn install
+        
+      - name: Run tests
+        working-directory: ${{ env.working-directory }}
+        run: yarn test:unit
