@@ -40,7 +40,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
-      
+
       - name: Install dependencies(client)
         working-directory: ${{ env.client-directory }}
         run: yarn install
@@ -51,11 +51,15 @@ jobs:
       
       - name: Run server
         working-directory: ${{ env.server-directory }}
-        run: node app.js
+        run: |
+          node app.js &
+          sleep 2
       
       - name: Run client
         working-directory: ${{ env.client-directory }}
-        run: yarn serve
+        run: |
+          yarn serve &
+          sleep 2
       
       - name: Run tests
         working-directory: ${{ env.client-directory }}
