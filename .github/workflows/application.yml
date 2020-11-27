@@ -1,0 +1,47 @@
+
+name: E2E
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  js-backend-test:
+    name: JS Backend
+    runs-on: ubuntu-latest
+    
+    env:
+      client-directory: ./client
+      server-directory: ./server-js
+    
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+
+      - name: Install dependencies(client)
+        working-directory: ${{ env.client-directory }}
+        run: yarn install
+      
+      - name: Install dependencies(server)
+        working-directory: ${{ env.server-directory }}
+        run: npm install
+      
+      - name: Run server
+        working-directory: ${{ env.server-directory }}
+        run: |
+          node app.js &
+          sleep 2
+      
+      - name: Run client
+        working-directory: ${{ env.client-directory }}
+        run: |
+          yarn serve &
+          sleep 2
+      
+      - name: Run tests
+        working-directory: ${{ env.client-directory }}
+        run: yarn test:e2e
