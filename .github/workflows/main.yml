@@ -12,6 +12,8 @@ on:
 jobs:
   unit-test:
     name: Unit Tests
+    env:
+      working-directory: ./client
     runs-on: ubuntu-latest
 
     steps:
