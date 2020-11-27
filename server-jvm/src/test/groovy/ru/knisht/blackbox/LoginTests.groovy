@@ -51,9 +51,8 @@ class LoginTests {
 	@Transactional
 	void 'successful authorization'() {
 		def username = 'hello', password = 'world'
-		userRepository.save(new User(name: username, password: password))
+		userRepository.save new User(name: username, password: password)
 		Assert.assertEquals(loginController.login(username, password).statusCode, HttpStatus.OK)
-		println userRepository.findAll()
 	}
 
 }
