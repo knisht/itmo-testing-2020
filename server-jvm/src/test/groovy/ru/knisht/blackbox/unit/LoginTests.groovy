@@ -1,4 +1,4 @@
-package ru.knisht.blackbox
+package ru.knisht.blackbox.unit
 
 import org.junit.Assert
 import org.junit.ClassRule

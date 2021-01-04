@@ -13,11 +13,11 @@ jobs:
   js-backend-test:
     name: E2E/JS
     runs-on: ubuntu-latest
-    
+
     env:
       client-directory: ./client
       server-directory: ./server-js
-    
+
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -25,39 +25,39 @@ jobs:
       - name: Install dependencies(client)
         working-directory: ${{ env.client-directory }}
         run: yarn install
-      
+
       - name: Install dependencies(server)
         working-directory: ${{ env.server-directory }}
         run: npm install
-      
+
       - name: Run server
         working-directory: ${{ env.server-directory }}
         run: |
           node app.js &
           sleep 2
-      
+
       - name: Run client
         working-directory: ${{ env.client-directory }}
         run: |
           yarn serve &
           sleep 2
-      
+
       - name: Run tests
         working-directory: ${{ env.client-directory }}
         run: yarn test:e2e
-        
+
   jvm-backend-test:
     name: E2E/JVM
     runs-on: ubuntu-latest
-    
+
     env:
       client-directory: ./client
       server-directory: ./server-jvm
-    
+
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
-      
+
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
@@ -66,23 +66,27 @@ jobs:
       - name: Install dependencies(client)
         working-directory: ${{ env.client-directory }}
         run: yarn install
-  
+
       - name: Install dependencies(server)
         working-directory: ${{ env.server-directory }}
         run: ./gradlew build -x test
-      
+
       - name: Run server
         working-directory: ${{ env.server-directory }}
         run: |
           ./gradlew bootRun &
           sleep 5
-      
+
       - name: Run client
         working-directory: ${{ env.client-directory }}
         run: |
           yarn serve &
           sleep 2
-      
-      - name: Run tests
+
+      - name: Run js tests
         working-directory: ${{ env.client-directory }}
         run: yarn test:e2e
+
+      - name: Run java tests
+        working-directory: ${{ env.server-directory }}
+        run: ./gradlew test -Dselenide.headless=true --tests '*.e2e.*'
