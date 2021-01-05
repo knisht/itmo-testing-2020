@@ -4,31 +4,20 @@ import com.codeborne.selenide.Configuration
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-import static com.codeborne.selenide.Condition.*
-import static com.codeborne.selenide.Selenide.$
-import static com.codeborne.selenide.Selenide.clearBrowserCookies
-import static com.codeborne.selenide.Selenide.clearBrowserLocalStorage
-import static com.codeborne.selenide.Selenide.sleep
-import static com.codeborne.selenide.Selenide.refresh
-import static com.codeborne.selenide.Selenide.open
-import static com.codeborne.selenide.WebDriverRunner.hasWebDriverStarted
+import static com.codeborne.selenide.Condition.text
+import static com.codeborne.selenide.Selenide.*
 
 abstract class IntegrationTests {
 
-    String browser = null
+    protected String browser = null
 
     @BeforeEach
     void setUp() {
-        Configuration.browser = 'firefox'
+        Configuration.browser = browser
+        assert browser != null
         Configuration.fastSetValue = false
-        if (hasWebDriverStarted()) {
-            clearBrowserCookies()
-            clearBrowserLocalStorage()
-            refresh()
-        }
-        else {
-            open('localhost:8080/guess')
-        }
+        Configuration.headless = true
+        open('http://localhost:8080/guess')
     }
 
     @Test
