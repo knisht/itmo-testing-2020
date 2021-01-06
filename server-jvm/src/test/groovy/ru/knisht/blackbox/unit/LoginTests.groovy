@@ -34,7 +34,7 @@ class LoginTests {
 	static PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer('postgres:11.1')
 			.withDatabaseName("integration-tests-db")
 			.withUsername('admeen')
-			.withPassword('admeen')
+			.withPassword 'admeen'
 
 	static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 		@Override
@@ -43,7 +43,7 @@ class LoginTests {
 					"spring.datasource.url=${postgreSQLContainer.jdbcUrl}",
 					"spring.datasource.username=${postgreSQLContainer.username}",
 					"spring.datasource.password=${postgreSQLContainer.password}"
-			).applyTo(configurableApplicationContext.environment)
+			) applyTo configurableApplicationContext.environment
 		}
 	}
 

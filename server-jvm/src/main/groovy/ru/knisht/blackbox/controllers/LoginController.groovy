@@ -42,7 +42,7 @@ class LoginController {
 
     @PostMapping("/login")
     ResponseEntity<String> login(String username, String password) {
-        def user = userRepository.findByNameAndPassword(username, password)
+        def user = userRepository.findByNameAndPassword username, password
         if (user != null) {
             def sessionToken = tokenService.createToken()
 
@@ -52,7 +52,7 @@ class LoginController {
                     .sameSite('Strict')
                     .httpOnly(true).secure(false).build()
 
-            sessionRepository.save(new Session(id: sessionToken, userId: user.userId))
+            sessionRepository.save new Session(id: sessionToken, userId: user.userId)
             return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).body('true')
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build()
