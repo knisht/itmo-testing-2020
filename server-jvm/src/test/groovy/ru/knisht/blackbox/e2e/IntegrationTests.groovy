@@ -36,8 +36,10 @@ abstract class IntegrationTests {
         $('#username-input').value = 'admin'
         $('#password-input').value = 'admin'
         $('#login-button') click()
+        sleep(1000)
         $('#secure') shouldHave text('You have successfully logged in')
         $(byLinkText('Logout')) click()
+        sleep(1000)
         $('#login') shouldBe visible
     }
 }
