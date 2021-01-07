@@ -31,15 +31,12 @@ abstract class IntegrationTests {
     }
 
     @Test
-    void successfulLogin() {
+    void unsuccessfulLogin() {
         open('http://localhost:8080/login')
-        $('#username-input').value = 'admin'
-        $('#password-input').value = 'admin'
+        $('#username-input').value = 'a'
+        $('#password-input').value = 'b'
         $('#login-button') click()
         sleep(1000)
-        $('#secure') shouldHave text('You have successfully logged in')
-//        $(byLinkText('Logout')) click()
-//        sleep(1000)
-//        $('#login') shouldBe visible
+        $('#secure') shouldNotBe visible
     }
 }
