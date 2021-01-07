@@ -1,3 +1,5 @@
+[Application features checklist (in Russian)](Checklist.md)
+
 # BlackBox 
 
 ## Backend setup
@@ -42,7 +44,7 @@ this address will be occupied by the mock server. Then you can run tests by the 
 ```shell script
 yarn test:unit
 ```
-- For e2e tests, you need to run backend at localhost:3030 and frontend at localhost:8000. 
+- For e2e tests, you need to run backend at `localhost:3000` and frontend at localhost:8000. 
 Then the following command will run all e2e tests.
 ```shell script
 yarn test:e2e
