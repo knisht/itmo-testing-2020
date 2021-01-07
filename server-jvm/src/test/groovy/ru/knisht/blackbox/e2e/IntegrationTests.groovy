@@ -38,8 +38,8 @@ abstract class IntegrationTests {
         $('#login-button') click()
         sleep(1000)
         $('#secure') shouldHave text('You have successfully logged in')
-        $(byLinkText('Logout')) click()
-        sleep(1000)
-        $('#login') shouldBe visible
+//        $(byLinkText('Logout')) click()
+//        sleep(1000)
+//        $('#login') shouldBe visible
     }
 }
